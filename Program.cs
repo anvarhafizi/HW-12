@@ -3,11 +3,59 @@ using System.Data.SqlClient;
 
 namespace MSSql
 {
-    class Program
+   class Program
     {
         static void Main(string[] args)
         {
-            
+            Person person = new Person();
+        look:
+            Console.WriteLine();
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Information about Employees");
+            switch (n)
+            {
+                case 1:
+                    person.GetPerson();
+                    break;
+                case 2:
+                    Console.Write("Input ID of Employee: ");
+                    int Id = Convert.ToInt32(Console.ReadLine());
+                    person.GetPersonById(Id);
+                    break;
+                case 3:
+                    Console.Write("LastName of Employee:");
+                    string lname = Console.ReadLine();
+                    Console.Write("FirstName of Employee:");
+                    string fname = Console.ReadLine();
+                    Console.Write("MiddleName of Employee:");
+                    string Mname = Console.ReadLine();
+                    Console.WriteLine("BirthDate of Employee:");
+                    DateTime birthd = DateTime.Now;
+                    person.PutInfoEmployees(lname,fname,Mname,birthd);
+                    break;
+                case 4:
+                    Console.Write("ID of an Employee: ");
+                    int id = Convert.ToInt32(Console.ReadLine());
+                    person.DeletePersonInfo(id);
+                    break;
+                case 5:
+                    Console.WriteLine("Please enter an ID to update: ");
+                    int ID = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Please enter LastName:");
+                    string LastName = Console.ReadLine();
+                    Console.WriteLine("Please enter FirsName:");
+                    string FirstName = Console.ReadLine();
+                    Console.WriteLine("Please enter MiddleName:");
+                    string MiddleName = Console.ReadLine();
+                    Console.WriteLine("Please enter a BirthDate:");
+                    DateTime BirthDate = Convert.ToDateTime(Console.ReadLine());
+                    person.UpdatePerson(ID, LastName, FirstName, MiddleName, BirthDate);
+                    break;
+                default:
+                    Console.Write("Please out of range! Choose in the interval 1-5");
+                    break;
+            }
+            goto look;
         }
     }
 
